@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import random
 
-# --- Dateimanagement (Lektion P2.2.5 Fokus) ---
+# --- Dateimanagement (Lektion P2_2_5 Fokus) ---
 
 def generiere_dateiname(extension):
     """
