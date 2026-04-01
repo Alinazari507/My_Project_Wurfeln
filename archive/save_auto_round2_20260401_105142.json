@@ -1,0 +1,19 @@
+{
+  "current_round": 2,
+  "current_player_name": "Alice",
+  "player_scores": [
+    {
+      "name": "Alice",
+      "score": 1
+    },
+    {
+      "name": "Bob",
+      "score": 2
+    },
+    {
+      "name": "Charlie",
+      "score": 6
+    }
+  ],
+  "timestamp": "2026-04-01T10:51:42.307822"
+}

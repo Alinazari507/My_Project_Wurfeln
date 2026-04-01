@@ -1,0 +1,16 @@
+[MASTER]
+disable=
+    missing-docstring,
+    too-few-public-methods,
+    too-many-arguments,
+    line-too-long,
+
+[FORMAT]
+max-line-length=100
+
+[DESIGN]
+max-attributes=10
+max-arguments=8
+
+[LOGGING]
+logging-format-style=new

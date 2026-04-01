@@ -1,23 +1,15 @@
-cat << 'EOF' > README.md
-# 🎲 My Project: Würfelspiel (Dice Game)
+# 🎲 Dice Game Project (DDD Implementation)
 
-This repository contains advanced Python exercises focusing on data management and game logic.
+This project is a sophisticated dice game built using **Domain-Driven Design (DDD)** principles.
 
-## 🚀 Features
-- **Data Serialization:** Working with `JSON`, `XML`, and `YAML`.
-- **Game State Management:** Implementing statelessness and save/load systems.
-- **Live Statistics:** Real-time tracking of dice rolls.
-- **Virtual Environment:** Fully isolated setup using `venv`.
+## 🏗️ Architecture (3-Layer)
+- **Domain:** Core game logic and ranking systems (`FinalRanking`, `GameRound`).
+- **Application:** Orchestration of game flow (`SiegerehrungApp`).
+- **Infrastructure:** Persistence and data storage (`ExtendedGameStorage`).
 
-## 📁 File Structure
-- `wuerfel_spiel.py`: Core game logic.
-- `spiel_statistik.py`: Statistics management module.
-- `savegame.json/yaml`: Sample data files.
+## 🚀 Quick Start
+1. Activate your virtual environment: `source venv/bin/activate`
+2. Run the main game: `python run_siegerehrung.py`
 
-## 🛠 Setup & Installation
-```bash
-# Activate the virtual environment
-source venv/bin/activate
-
-# Install dependencies
-pip install PyYAML
+## 📁 Key Documentation
+Detailed learning paths and guides can be found in the `/docs` folder.

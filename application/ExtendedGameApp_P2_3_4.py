@@ -102,7 +102,6 @@ class ExtendedGameApplication:
         for p in sorted_players:
             print(f"  👤 {p.name:<15} | {p.score:>3} Punkte")
         print("-" * 35)
-
 # =================================================================
 # HAUPTPROGRAMM (EXECUTION BLOCK)
 # =================================================================

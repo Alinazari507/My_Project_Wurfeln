@@ -1,0 +1,21 @@
+# flake8 configuration for Clean Code Standards
+# PEP 8 Compliance
+
+[flake8]
+max-line-length = 100
+max-complexity = 10
+exclude = 
+    venv,
+    __pycache__,
+    .git,
+    archive
+ignore = 
+    E203,  # whitespace before ':'
+    W503,  # line break before binary operator
+    E501   # line too long (handled by black)
+
+per-file-ignores =
+    __init__.py:F401
+
+count = True
+statistics = True

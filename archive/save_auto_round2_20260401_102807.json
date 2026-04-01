@@ -1,0 +1,23 @@
+{
+  "current_round": 2,
+  "current_player_name": "Lukas",
+  "player_scores": [
+    {
+      "name": "Lukas",
+      "score": 13
+    },
+    {
+      "name": "Hanna",
+      "score": 16
+    },
+    {
+      "name": "Maximilian",
+      "score": 8
+    },
+    {
+      "name": "Sarah",
+      "score": 10
+    }
+  ],
+  "timestamp": "2026-04-01T10:28:07.138460"
+}
