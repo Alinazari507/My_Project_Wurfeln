@@ -1,63 +1,69 @@
 import re
 
-def get_number_of_players():
-    """
-    Fragt den Benutzer nach der Anzahl der Spieler (1-99).
-    Verwendet eine Fehlerbehandlung (Try-Except), um ungültige Eingaben abzufangen.
-    
-    Returns:
-        int: Die validierte Anzahl der Spieler.
-    """
-    while True:
-        eingabe = input("Anzahl der Spieler eingeben (1-99): ").strip()
-        
-        try:
-            # Versuch, die Eingabe in eine Ganzzahl umzuwandeln
-            anzahl = int(eingabe)
-            if 1 <= anzahl <= 99:
-                return anzahl
-            else:
-                print("❌ Fehler: Bitte eine Zahl zwischen 1 und 99 eingeben.")
-        except ValueError:
-            # Wird ausgeführt, wenn die Umwandlung in int() scheitert
-            print("❌ Fehler: Ungültige Eingabe! Bitte nur Zahlen eingeben.")
+"""
+DOMAIN LAYER: Player Management
+Dieses Modul enthält die reine Geschäftslogik für die Spieler-Validierung.
+Es gibt hier keine Inputs oder Prints, da dies die Aufgabe der Application-Layer ist.
+"""
 
-def get_player_name(spieler_nummer):
+def validate_player_count(anzahl_str):
     """
-    Validiert den Spielernamen mithilfe von RegEx.
+    Prüft, ob die Spieleranzahl eine gültige Zahl zwischen 1 und 99 ist.
+    
+    Args:
+        anzahl_str (str/int): Die vom Benutzer eingegebene Anzahl.
+        
+    Returns:
+        int: Die validierte Anzahl als Integer.
+        
+    Raises:
+        ValueError: Wenn die Eingabe keine Zahl ist oder außerhalb des Bereichs liegt.
+    """
+    try:
+        anzahl = int(anzahl_str)
+        if 1 <= anzahl <= 99:
+            return anzahl
+        # Wenn die Zahl außerhalb des Bereichs liegt
+        raise ValueError("Die Anzahl der Spieler muss zwischen 1 und 99 liegen.")
+    except (ValueError, TypeError):
+        # Wenn die Umwandlung in int scheitert
+        raise ValueError("Ungültige Eingabe! Bitte geben Sie eine Ganzzahl ein.")
+
+
+def validate_player_name(name):
+    """
+    Validiert den Namen gegen ein RegEx-Muster.
     Erlaubt Buchstaben (inkl. Umlaute), Leerzeichen und Bindestriche.
     
     Args:
-        spieler_nummer (int): Die Nummer des aktuellen Spielers für die Anzeige.
+        name (str): Der zu prüfende Name.
         
     Returns:
-        str: Der validierte Name des Spielers.
+        str: Der bereinigte und validierte Name.
+        
+    Raises:
+        ValueError: Wenn der Name leer ist oder ungültige Zeichen enthält.
     """
-    # RegEx-Pattern: Erlaubt A-Z, a-z, deutsche Umlaute (äöüß), Leerzeichen und Bindestriche
+    # RegEx-Pattern: Buchstaben, deutsche Umlaute, Leerzeichen und Bindestriche
     pattern = r"^[a-zA-ZäöüßÄÖÜ\s\-]+$"
     
-    while True:
-        name = input(f"Name für Spieler {spieler_nummer} eingeben: ").strip()
+    if not name:
+        raise ValueError("Der Name darf nicht leer sein.")
         
-        # Sicherstellen, dass die Eingabe nicht leer ist
-        if not name:
-            print("❌ Fehler: Der Name darf nicht leer sein.")
-            continue
-            
-        # Überprüfung des Namens gegen das definierte Muster
-        if re.match(pattern, name):
-            return name
-        else:
-            print(f"❌ Fehler: '{name}' ist ungültig. (Nur Buchstaben, Leerzeichen oder Bindestriche erlaubt).")
+    name = name.strip()
+    
+    if re.match(pattern, name):
+        return name
+    else:
+        raise ValueError(f"Der Name '{name}' ist ungültig (nur Buchstaben erlaubt).")
+
 
 if __name__ == "__main__":
-    # Test-Bereich für die Validierung der Logik
-    print("--- SETUP TEST-MODUS ---")
-    anzahl = get_number_of_players()
-    
-    spieler_liste = []
-    for i in range(1, anzahl + 1):
-        name = get_player_name(i)
-        spieler_liste.append(name)
-    
-    print(f"\n✅ Setup erfolgreich für: {', '.join(spieler_liste)}")
+    # Kleiner interner Testbereich (Unit Test Light)
+    try:
+        print(f"Test 1 (Zahl 5): {validate_player_count('5')}")
+        print(f"Test 2 (Name 'Max'): {validate_player_name('Max')}")
+        # Test 3 soll absichtlich einen Fehler werfen:
+        # print(f"Test 3 (Fehler): {validate_player_count('abc')}")
+    except ValueError as e:
+        print(f"Test-Fehler abgefangen: {e}")
